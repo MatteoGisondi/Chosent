@@ -11,7 +11,7 @@ config_version=4
 [application]
 
 config/name="Chosent"
-run/main_scene="res://TestScene1.tscn"
+run/main_scene="res://Levels/MainLevel.tscn"
 config/icon="res://icon.png"
 
 [gui]
