@@ -35,7 +35,7 @@ namespace Chosent.Logic
             PrecomputeCost(end);
             var startNode = GetNodeFromPool(start.X, start.Y);
             var endNode = GetNodeFromPool(end.X, end.Y);
-            if (startNode == null) throw new IndexOutOfRangeException();
+            if (startNode == null) throw new Exception("IndexOutofRange");
             startNode.G = 0;
             startNode.H = _heuristicCost[startNode.X, startNode.Y];
             startNode.F = startNode.G + startNode.H;
@@ -46,7 +46,7 @@ namespace Chosent.Logic
             while (_openList.Count > 0)
             {
                 // Get the node with the lowest F score
-                var currentNode = _openList.Dequeue() ?? throw new InvalidOperationException();
+                var currentNode = _openList.Dequeue() ?? throw new Exception("InvalidOperation");
                 Debug.WriteLine($"Current node: {currentNode}");
 
                 if (IsEndNode(currentNode, endNode))
@@ -106,7 +106,7 @@ namespace Chosent.Logic
                 for (var j = -1; j <= 1; j++)
                 {
                     if (i == 0 && j == 0) continue; // current
-                    if (i + j == 0 || Math.Abs(i + j) == 2) continue; // diagonal
+                    if (i + j == 0 || i + j == 2 || i + j == -2) continue; // diagonal
                     if (!IsValidCoordinate(currentNode.X + i, currentNode.Y + j)) continue; // illegal
                     var neighbor = GetNodeFromPool(currentNode.X + i, currentNode.Y + j);
                     if (IsVisited(neighbor)) continue; // visited
@@ -173,7 +173,7 @@ namespace Chosent.Logic
             {
                 if (currentNode == null) continue;
                 path.Add(currentNode);
-                Console.WriteLine($"Path Node:{currentNode.ToString()}");
+                // Console.WriteLine($"Path Node:{currentNode.ToString()}");
                 currentNode = currentNode.Parent;
             }
 
