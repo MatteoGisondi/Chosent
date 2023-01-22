@@ -173,7 +173,7 @@ public class CharacterCreation : Control
 		globals._str = _str;
 		globals._dex = _dex;
 		globals._int = _int;
-		GD.Print("End of Character Creation!");
+		//GD.Print("End of Character Creation!");
 		GetTree().ChangeScene("res://Levels/MainLevel.tscn");
 	}
 }
