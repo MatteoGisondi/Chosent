@@ -1,6 +1,8 @@
 using Godot;
 using System;
 
+namespace Chosent.Logic;
+
 public class Icon : Sprite
 {
 	// Declare member variables here. Examples:

@@ -1,6 +1,8 @@
 using Godot;
 using System;
 
+namespace Chosent.Logic;
+
 public class Player : KinematicBody2D
 {
 	// Declare member variables here. Examples:
@@ -12,7 +14,7 @@ public class Player : KinematicBody2D
 	private float _inputDelay = 0.1f;
 	private int _movementSpeed = 64;
 
-	// Called when the node enters the scene tree for the first time. 
+	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		_lastInput = DateTime.MinValue; // Set it to the minimum value so we can move immediately
