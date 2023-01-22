@@ -1,6 +1,14 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Logic/CharacterCreation.cs" type="Script" id=1]
+[ext_resource path="res://assets/ArrowRL.png" type="Texture" id=2]
+[ext_resource path="res://assets/ArrowYL.png" type="Texture" id=3]
+[ext_resource path="res://assets/ArrowBL.png" type="Texture" id=4]
+[ext_resource path="res://assets/ArrowYR.png" type="Texture" id=5]
+[ext_resource path="res://assets/ArrowGR.png" type="Texture" id=6]
+[ext_resource path="res://assets/ArrowBR.png" type="Texture" id=7]
+
+[sub_resource type="ImageTexture" id=1]
 
 [node name="Node2D" type="Node2D"]
 
@@ -30,42 +38,45 @@ margin_left = 276.0
 margin_top = 246.0
 margin_right = 537.0
 margin_bottom = 338.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="StatNames" type="VBoxContainer" parent="Control/StatBlock"]
 margin_right = 62.0
-margin_bottom = 92.0
+margin_bottom = 140.0
 size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Control/StatBlock/StatNames"]
 margin_right = 62.0
-margin_bottom = 20.0
+margin_bottom = 32.0
 rect_pivot_offset = Vector2( -32, -55 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "Aliven't"
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="Control/StatBlock/StatNames"]
-margin_top = 24.0
+margin_top = 36.0
 margin_right = 62.0
-margin_bottom = 44.0
+margin_bottom = 68.0
 rect_pivot_offset = Vector2( -32, -55 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "Stronkn't"
 
 [node name="RichTextLabel3" type="RichTextLabel" parent="Control/StatBlock/StatNames"]
-margin_top = 48.0
+margin_top = 72.0
 margin_right = 62.0
-margin_bottom = 68.0
+margin_bottom = 104.0
 rect_pivot_offset = Vector2( -32, -55 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "Dexn't"
 
 [node name="RichTextLabel4" type="RichTextLabel" parent="Control/StatBlock/StatNames"]
-margin_top = 72.0
+margin_top = 108.0
 margin_right = 62.0
-margin_bottom = 92.0
+margin_bottom = 140.0
 rect_pivot_offset = Vector2( -32, -55 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -74,61 +85,60 @@ text = "Intn't"
 [node name="StatDowns" type="VBoxContainer" parent="Control/StatBlock"]
 margin_left = 66.0
 margin_right = 128.0
-margin_bottom = 92.0
+margin_bottom = 140.0
 size_flags_horizontal = 3
 
-[node name="HPButtonDown" type="Button" parent="Control/StatBlock/StatDowns"]
+[node name="HPButtonDown" type="TextureButton" parent="Control/StatBlock/StatDowns"]
 margin_right = 62.0
-margin_bottom = 20.0
-rect_pivot_offset = Vector2( -1060, -101 )
-text = "Down"
+margin_bottom = 32.0
+texture_normal = ExtResource( 2 )
+texture_pressed = ExtResource( 4 )
+texture_hover = ExtResource( 3 )
+texture_disabled = SubResource( 1 )
 
-[node name="StrButtonDown" type="Button" parent="Control/StatBlock/StatDowns"]
-margin_top = 24.0
-margin_right = 62.0
-margin_bottom = 44.0
-rect_pivot_offset = Vector2( -1060, -101 )
-text = "Down"
-
-[node name="DexButtonDown" type="Button" parent="Control/StatBlock/StatDowns"]
-margin_top = 48.0
+[node name="StrButtonDown" type="TextureButton" parent="Control/StatBlock/StatDowns"]
+margin_top = 36.0
 margin_right = 62.0
 margin_bottom = 68.0
-rect_pivot_offset = Vector2( -1060, -101 )
-text = "Down"
+texture_normal = ExtResource( 2 )
+texture_pressed = ExtResource( 4 )
+texture_hover = ExtResource( 3 )
+texture_disabled = SubResource( 1 )
 
-[node name="IntButtonDown" type="Button" parent="Control/StatBlock/StatDowns"]
+[node name="DexButtonDown" type="TextureButton" parent="Control/StatBlock/StatDowns"]
 margin_top = 72.0
 margin_right = 62.0
-margin_bottom = 92.0
-rect_pivot_offset = Vector2( -1060, -101 )
-text = "Down"
+margin_bottom = 104.0
+texture_normal = ExtResource( 2 )
+texture_pressed = ExtResource( 4 )
+texture_hover = ExtResource( 3 )
+texture_disabled = SubResource( 1 )
+
+[node name="IntButtonDown" type="TextureButton" parent="Control/StatBlock/StatDowns"]
+margin_top = 108.0
+margin_right = 62.0
+margin_bottom = 140.0
+texture_normal = ExtResource( 2 )
+texture_pressed = ExtResource( 4 )
+texture_hover = ExtResource( 3 )
+texture_disabled = SubResource( 1 )
 
 [node name="StatValues" type="VBoxContainer" parent="Control/StatBlock"]
 margin_left = 132.0
 margin_right = 194.0
-margin_bottom = 92.0
+margin_bottom = 140.0
 size_flags_horizontal = 3
 
 [node name="HPValue" type="RichTextLabel" parent="Control/StatBlock/StatValues"]
 margin_right = 62.0
-margin_bottom = 20.0
+margin_bottom = 32.0
 rect_pivot_offset = Vector2( -32, -55 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "0"
 
 [node name="StrValue" type="RichTextLabel" parent="Control/StatBlock/StatValues"]
-margin_top = 24.0
-margin_right = 62.0
-margin_bottom = 44.0
-rect_pivot_offset = Vector2( -32, -55 )
-size_flags_horizontal = 3
-size_flags_vertical = 3
-text = "0"
-
-[node name="DexValue" type="RichTextLabel" parent="Control/StatBlock/StatValues"]
-margin_top = 48.0
+margin_top = 36.0
 margin_right = 62.0
 margin_bottom = 68.0
 rect_pivot_offset = Vector2( -32, -55 )
@@ -136,10 +146,19 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "0"
 
-[node name="IntValue" type="RichTextLabel" parent="Control/StatBlock/StatValues"]
+[node name="DexValue" type="RichTextLabel" parent="Control/StatBlock/StatValues"]
 margin_top = 72.0
 margin_right = 62.0
-margin_bottom = 92.0
+margin_bottom = 104.0
+rect_pivot_offset = Vector2( -32, -55 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "0"
+
+[node name="IntValue" type="RichTextLabel" parent="Control/StatBlock/StatValues"]
+margin_top = 108.0
+margin_right = 62.0
+margin_bottom = 140.0
 rect_pivot_offset = Vector2( -32, -55 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -148,39 +167,47 @@ text = "0"
 [node name="StatUps" type="VBoxContainer" parent="Control/StatBlock"]
 margin_left = 198.0
 margin_right = 261.0
-margin_bottom = 92.0
+margin_bottom = 140.0
 size_flags_horizontal = 3
 
-[node name="HPButtonUp" type="Button" parent="Control/StatBlock/StatUps"]
+[node name="HPButtonUp" type="TextureButton" parent="Control/StatBlock/StatUps"]
 margin_right = 63.0
-margin_bottom = 20.0
-rect_pivot_offset = Vector2( -1060, -101 )
-text = "Up"
+margin_bottom = 32.0
+texture_normal = ExtResource( 6 )
+texture_pressed = ExtResource( 7 )
+texture_hover = ExtResource( 5 )
+texture_disabled = SubResource( 1 )
 
-[node name="StrButtonUp" type="Button" parent="Control/StatBlock/StatUps"]
-margin_top = 24.0
-margin_right = 63.0
-margin_bottom = 44.0
-rect_pivot_offset = Vector2( -1060, -101 )
-text = "Up"
-
-[node name="DexButtonUp" type="Button" parent="Control/StatBlock/StatUps"]
-margin_top = 48.0
+[node name="StrButtonUp" type="TextureButton" parent="Control/StatBlock/StatUps"]
+margin_top = 36.0
 margin_right = 63.0
 margin_bottom = 68.0
-rect_pivot_offset = Vector2( -1060, -101 )
-text = "Up"
+texture_normal = ExtResource( 6 )
+texture_pressed = ExtResource( 7 )
+texture_hover = ExtResource( 5 )
+texture_disabled = SubResource( 1 )
 
-[node name="IntButtonUp" type="Button" parent="Control/StatBlock/StatUps"]
+[node name="DexButtonUp" type="TextureButton" parent="Control/StatBlock/StatUps"]
 margin_top = 72.0
 margin_right = 63.0
-margin_bottom = 92.0
-rect_pivot_offset = Vector2( -1060, -101 )
-text = "Up"
+margin_bottom = 104.0
+texture_normal = ExtResource( 6 )
+texture_pressed = ExtResource( 7 )
+texture_hover = ExtResource( 5 )
+texture_disabled = SubResource( 1 )
+
+[node name="IntButtonUp" type="TextureButton" parent="Control/StatBlock/StatUps"]
+margin_top = 108.0
+margin_right = 63.0
+margin_bottom = 140.0
+texture_normal = ExtResource( 6 )
+texture_pressed = ExtResource( 7 )
+texture_hover = ExtResource( 5 )
+texture_disabled = SubResource( 1 )
 
 [node name="ContinueButton" type="Button" parent="Control"]
-margin_left = 679.0
-margin_top = 364.0
-margin_right = 834.0
-margin_bottom = 431.0
+margin_left = 626.0
+margin_top = 511.0
+margin_right = 781.0
+margin_bottom = 578.0
 text = "Continue"

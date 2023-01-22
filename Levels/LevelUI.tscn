@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Logic/UIView.cs" type="Script" id=1]
+[ext_resource path="res://Levels/MainLevel.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/Gradient.png" type="Texture" id=4]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="Gradient" type="Sprite" parent="."]
+position = Vector2( 396.616, 216.191 )
+rotation = 1.5708
+scale = Vector2( 13.637, 25.538 )
+texture = ExtResource( 4 )
+
+[node name="Scalar" type="RemoteTransform2D" parent="."]
+position = Vector2( 200, 25 )
+scale = Vector2( 0.8, 0.8 )
+
+[node name="Level" parent="Scalar" instance=ExtResource( 2 )]
+
+[node name="Gradient2" type="Sprite" parent="."]
+position = Vector2( 1018, 216.191 )
+rotation = 1.5708
+scale = Vector2( 13.637, 25.538 )
+texture = ExtResource( 4 )
+
+[node name="Gradient3" type="Sprite" parent="."]
+position = Vector2( 401, 545 )
+rotation = -1.5708
+scale = Vector2( 6.92997, 25.0979 )
+texture = ExtResource( 4 )

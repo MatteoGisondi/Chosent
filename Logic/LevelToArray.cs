@@ -9,9 +9,9 @@ namespace Chosent.Logic
 	{
 		public int[,] levelArray = new int[8, 8];
 		// Called when the node enters the scene tree for the first time.
-		
+
 		private bool isRendered = false;
-		
+
 		public override void _Ready()
 		{
 			// Convert the level into an array
@@ -58,19 +58,13 @@ namespace Chosent.Logic
 				}
 				GD.Print(line);
 			}
-		
+
 			this.isRendered = true;
 		}
-		
+
 		public bool IsRendered()
 		{
 			return this.isRendered;
 		}
-
-		//  // Called every frame. 'delta' is the elapsed time since the previous frame.
-		//  public override void _Process(float delta)
-		//  {
-		//      
-		//  }
 	}
 }
