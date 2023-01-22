@@ -228,9 +228,8 @@ text = "Intn't"
 
 [node name="StatDowns" type="VBoxContainer" parent="Control/StatBlock"]
 margin_left = 66.0
-margin_top = -10.0
 margin_right = 128.0
-margin_bottom = 130.0
+margin_bottom = 140.0
 size_flags_horizontal = 3
 
 [node name="HPButtonDown" type="TextureButton" parent="Control/StatBlock/StatDowns"]
@@ -319,9 +318,8 @@ text = "0"
 
 [node name="StatUps" type="VBoxContainer" parent="Control/StatBlock"]
 margin_left = 198.0
-margin_top = -10.0
 margin_right = 261.0
-margin_bottom = 130.0
+margin_bottom = 140.0
 size_flags_horizontal = 3
 
 [node name="HPButtonUp" type="TextureButton" parent="Control/StatBlock/StatUps"]

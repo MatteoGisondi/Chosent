@@ -24,7 +24,7 @@ public class CharacterCreation : Control
 	RichTextLabel _intValue;
 	int _int;
 	
-	Button _continueButton;
+		Button _continueButton;
 	
 	public override void _Ready()
 	{
