@@ -175,6 +175,6 @@ public class CharacterCreation : Control
 		globals._dex = _dex;
 		globals._int = _int;
 		//GD.Print("End of Character Creation!");
-		GetTree().ChangeScene("res://Levels/MainLevel.tscn");
+		GetTree().ChangeScene("res://Levels/LevelUI.tscn");
 	}
 }
