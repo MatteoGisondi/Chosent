@@ -1,6 +1,6 @@
 using System.Diagnostics;
 
-namespace ConsoleApp1.Logic
+namespace Chosent.Logic
 {
 
     class AStar
