@@ -119,14 +119,12 @@ margin_left = 43.0
 margin_top = 58.0
 margin_right = 158.0
 margin_bottom = 98.0
-text = "ayyyy lmao"
 
 [node name="Stats" type="RichTextLabel" parent="."]
 margin_left = 44.0
 margin_top = 129.0
 margin_right = 159.0
 margin_bottom = 223.0
-text = "ayyyy lmao"
 
 [node name="StartButton" type="Button" parent="."]
 margin_left = 46.0
