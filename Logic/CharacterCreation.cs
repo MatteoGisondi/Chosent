@@ -7,20 +7,20 @@ public class CharacterCreation : Control
 	
 	RichTextLabel _pointsRemaining;
 	int _points;
-	Button _hpDown;
-	Button _hpUp;
+	TextureButton _hpDown;
+	TextureButton _hpUp;
 	RichTextLabel _hpValue;
 	int _hp;
-	Button _strDown;
-	Button _strUp;
+	TextureButton _strDown;
+	TextureButton _strUp;
 	RichTextLabel _strValue;
 	int _str;
-	Button _dexDown;
-	Button _dexUp;
+	TextureButton _dexDown;
+	TextureButton _dexUp;
 	RichTextLabel _dexValue;
 	int _dex;
-	Button _intDown;
-	Button _intUp;
+	TextureButton _intDown;
+	TextureButton _intUp;
 	RichTextLabel _intValue;
 	int _int;
 	
@@ -35,16 +35,17 @@ public class CharacterCreation : Control
 		_int = 1;
 		
 		_pointsRemaining = (RichTextLabel)GetNode("PointsRemaining");
+		_pointsRemaining = (RichTextLabel)GetNode("PointsRemaining");
 		var statBlock = (HBoxContainer)GetNode("StatBlock");
 		var statDowns = (VBoxContainer)statBlock.GetNode("StatDowns");
 		var statValues = (VBoxContainer)statBlock.GetNode("StatValues");
 		var statUps = (VBoxContainer)statBlock.GetNode("StatUps");
 		
 		// Down buttons
-		_hpDown = (Button)statDowns.GetNode("HPButtonDown");
-		_strDown = (Button)statDowns.GetNode("StrButtonDown");
-		_dexDown = (Button)statDowns.GetNode("DexButtonDown");
-		_intDown = (Button)statDowns.GetNode("IntButtonDown");
+		_hpDown = (TextureButton)statDowns.GetNode("HPButtonDown");
+		_strDown = (TextureButton)statDowns.GetNode("StrButtonDown");
+		_dexDown = (TextureButton)statDowns.GetNode("DexButtonDown");
+		_intDown = (TextureButton)statDowns.GetNode("IntButtonDown");
 		_hpDown.Connect("pressed", this, nameof(HPDown));
 		_strDown.Connect("pressed", this, nameof(StrDown));
 		_dexDown.Connect("pressed", this, nameof(DexDown));
@@ -57,10 +58,10 @@ public class CharacterCreation : Control
 		_intValue = (RichTextLabel)statValues.GetNode("IntValue");
 		
 		// Up buttons
-		_hpUp = (Button)statUps.GetNode("HPButtonUp");
-		_strUp = (Button)statUps.GetNode("StrButtonUp");
-		_dexUp = (Button)statUps.GetNode("DexButtonUp");
-		_intUp = (Button)statUps.GetNode("IntButtonUp");
+		_hpUp = (TextureButton)statUps.GetNode("HPButtonUp");
+		_strUp = (TextureButton)statUps.GetNode("StrButtonUp");
+		_dexUp = (TextureButton)statUps.GetNode("DexButtonUp");
+		_intUp = (TextureButton)statUps.GetNode("IntButtonUp");
 		_hpUp.Connect("pressed", this, nameof(HPUp));
 		_strUp.Connect("pressed", this, nameof(StrUp));
 		_dexUp.Connect("pressed", this, nameof(DexUp));
