@@ -1,11 +1,11 @@
 using System.Diagnostics;
 
-namespace Chosent.Logic
+namespace ConsoleApp1.Logic
 {
 
     class AStar
     {
-        internal class Node
+        internal class Node : IComparable<Node>
         {
             public int X { get; set; }
             public int Y { get; set; }
@@ -25,6 +25,11 @@ namespace Chosent.Logic
             {
                 return string.Format($"({X}, {Y}) [G={G}, H={H}, F={F}]");
             }
+
+            public int CompareTo(Node? other)
+            {
+                return F.CompareTo(other.F);
+            }
         }
 
         private readonly int[,] _map;
@@ -33,7 +38,7 @@ namespace Chosent.Logic
 
         private int[,] _movementCost;
 
-        private readonly PriorityQueue<Node, int> _openList;
+        private readonly ConsoleApp1.Logic.PriorityQueue<Node> _openList;
         // ReSharper disable once CollectionNeverQueried.Local
         private readonly HashSet<Node> _openSet;
 
@@ -44,7 +49,7 @@ namespace Chosent.Logic
         public AStar(int[,] map)
         {
             _map = map;
-            _openList = new PriorityQueue<Node, int>();
+            _openList = new PriorityQueue<Node>();
             _openSet = new HashSet<Node>();
             _closedList = new HashSet<(int, int)>();
             _nodePool = new Stack<Node?>();
@@ -62,7 +67,7 @@ namespace Chosent.Logic
             startNode.H = _heuristicCost[startNode.X, startNode.Y];
             startNode.F = startNode.G + startNode.H;
 
-            _openList.Enqueue(startNode, startNode.F);
+            _openList.Enqueue(startNode);
             _openSet.Add(startNode);
 
             while (_openList.Count > 0)
@@ -101,7 +106,7 @@ namespace Chosent.Logic
                     neighbor.H = _heuristicCost[neighbor.X, neighbor.Y];
                     neighbor.F = neighbor.G + neighbor.H;
                     neighbor.Parent = currentNode;
-                    _openList.Enqueue(neighbor, neighbor.F);
+                    _openList.Enqueue(neighbor);
                     _openSet.Add(neighbor);
                 }
             }
