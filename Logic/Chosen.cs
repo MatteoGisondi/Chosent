@@ -146,7 +146,8 @@ namespace Chosent.Logic
 					// ((UIView)(GetTree().Root.GetChildren()[0])).UpdateHP();
 					// if (globals.health <= 0)
 					// {
-						GetTree().Quit();
+						//GetTree().Quit();
+						GetTree().ChangeScene("res://Levels/EndGameL.tscn");
 					// }
 				}
 			}
