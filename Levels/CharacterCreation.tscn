@@ -211,8 +211,8 @@ margin_bottom = 104.0
 rect_pivot_offset = Vector2( -32, -55 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_colors/default_color = Color( 0.184314, 0.65098, 0, 1 )
-custom_colors/selection_color = Color( 0.184314, 0.65098, 0, 1 )
+custom_colors/default_color = Color( 0.184314, 0.462745, 0.0745098, 1 )
+custom_colors/selection_color = Color( 0.184314, 0.462745, 0.0745098, 1 )
 text = "Dexn't"
 
 [node name="RichTextLabel4" type="RichTextLabel" parent="Control/StatBlock/StatNames"]
@@ -228,8 +228,9 @@ text = "Intn't"
 
 [node name="StatDowns" type="VBoxContainer" parent="Control/StatBlock"]
 margin_left = 66.0
+margin_top = -10.0
 margin_right = 128.0
-margin_bottom = 140.0
+margin_bottom = 130.0
 size_flags_horizontal = 3
 
 [node name="HPButtonDown" type="TextureButton" parent="Control/StatBlock/StatDowns"]
@@ -318,8 +319,9 @@ text = "0"
 
 [node name="StatUps" type="VBoxContainer" parent="Control/StatBlock"]
 margin_left = 198.0
+margin_top = -10.0
 margin_right = 261.0
-margin_bottom = 140.0
+margin_bottom = 130.0
 size_flags_horizontal = 3
 
 [node name="HPButtonUp" type="TextureButton" parent="Control/StatBlock/StatUps"]
