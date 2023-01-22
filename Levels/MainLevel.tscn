@@ -3,7 +3,7 @@
 [ext_resource path="res://Objects/Block.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Objects/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/FunnyMan.png" type="Texture" id=3]
-[ext_resource path="res://Logic/MainLevel.gd" type="Script" id=4]
+[ext_resource path="res://Objects/PlayerCharacter.tscn" type="PackedScene" id=4]
 
 [sub_resource type="AtlasTexture" id=1]
 flags = 4
@@ -44,10 +44,8 @@ animations = [ {
 } ]
 
 [node name="Level" type="Node2D"]
-script = ExtResource( 4 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( 30, 29 )
 
 [node name="FunnyDood" type="AnimatedSprite" parent="Player"]
 scale = Vector2( 2, 2 )
@@ -60,3 +58,5 @@ position = Vector2( 173, 411 )
 
 [node name="Block2" parent="." instance=ExtResource( 1 )]
 position = Vector2( 244, 411 )
+
+[node name="PlayerCharacter" parent="." instance=ExtResource( 4 )]
