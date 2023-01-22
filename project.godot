@@ -14,6 +14,10 @@ config/name="Chosent"
 run/main_scene="res://Levels/TitleScreen.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+GlobalVariables="*res://Logic/GlobalVariables.cs"
+
 [editor]
 
 version_control_autoload_on_startup=true
