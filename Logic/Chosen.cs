@@ -61,6 +61,14 @@ namespace Chosent.Logic
 					if (_hp <= 0 || _str <= 0 || _dex <= 0 || _int <= 0)
 					{
 						this.QueueFree();
+						var player = (PackedScene)ResourceLoader.Load("res://Objects/Player.tscn");
+						var playerNode = (Chosen)player.Instance();
+						playerNode._hp += 2;
+						playerNode._str += 2;
+						playerNode._dex += 2;
+						playerNode._int += 2;
+						playerNode.SetPosition(new Vector2(32, 32));
+						level.AddChild(playerNode);
 					}
 				}
 			}
@@ -70,18 +78,20 @@ namespace Chosent.Logic
 
 		public override void _Ready()
 		{
-			int randomX = -1;
-			int randomY = -1;
-			while (randomX == -1 && randomY == -1)
-			{
-				int x = rng.RandiRange(0, 5);
-				int y = rng.RandiRange(0, 5);
-				if (this.GetLevel().levelArray[x, y] == 0)
-				{
-					randomX = x;
-					randomY = y;
-				}
-			}
+			//int randomX = -1;
+			//int randomY = -1;
+			//while (randomX == -1 && randomY == -1)
+			//{
+				// int x = rng.RandiRange(0, 5);
+				// int y = rng.RandiRange(0, 5);
+				// if (this.GetLevel().levelArray[x, y] == 0)
+				// {
+				// 	randomX = x;
+				// 	randomY = y;
+				// }
+				
+			// }
+			this.start = (0, 0);
 			_lastInput = DateTime.MinValue; // Set it to the minimum value so we can move immediately
 		}
 
@@ -134,12 +144,7 @@ namespace Chosent.Logic
 					// GetTree().Quit();
 				}
 			}
-
 		}
-
-
-
-
 
 		/// <summary>
 		/// Handles the movement of the icon

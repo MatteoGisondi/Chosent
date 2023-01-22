@@ -186,8 +186,5 @@ namespace Chosent.Logic
 			}
 		}
 
-		
-
-
 	}
 }
