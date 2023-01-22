@@ -12,9 +12,9 @@ namespace ConsoleApp1.Logic
             public int G { get; set; }
             public int H { get; set; }
             public int F { get; set; }
-            public Node Parent { get; set; }
+            public Node? Parent { get; set; }
 
-            public Node(int x, int y, Node parent)
+            public Node(int x, int y, Node? parent)
             {
                 X = x;
                 Y = y;
@@ -26,7 +26,7 @@ namespace ConsoleApp1.Logic
                 return string.Format($"({X}, {Y}) [G={G}, H={H}, F={F}]");
             }
 
-            public int CompareTo(Node other)
+            public int CompareTo(Node? other)
             {
                 return F.CompareTo(other.F);
             }
@@ -44,7 +44,7 @@ namespace ConsoleApp1.Logic
 
         private readonly HashSet<(int, int)> _closedList;
 
-        private readonly Stack<Node> _nodePool;
+        private readonly Stack<Node?> _nodePool;
 
         public AStar(int[,] map)
         {
@@ -52,12 +52,12 @@ namespace ConsoleApp1.Logic
             _openList = new PriorityQueue<Node>();
             _openSet = new HashSet<Node>();
             _closedList = new HashSet<(int, int)>();
-            _nodePool = new Stack<Node>();
+            _nodePool = new Stack<Node?>();
             _heuristicCost = new int[map.GetLength(0), map.GetLength(1)];
             _movementCost = new int[map.GetLength(0), map.GetLength(1)];
         }
 
-        public List<Node> FindPath((int Y, int X) start, (int Y, int X) end)
+        public List<Node>? FindPath((int Y, int X) start, (int Y, int X) end)
         {
             PrecomputeCost(end);
             var startNode = GetNodeFromPool(start.X, start.Y);
@@ -175,7 +175,7 @@ namespace ConsoleApp1.Logic
             }
         }
 
-        private Node GetNodeFromPool(int x, int y)
+        private Node? GetNodeFromPool(int x, int y)
         {
             if (_nodePool.Count == 0)
             {
@@ -192,7 +192,7 @@ namespace ConsoleApp1.Logic
             }
         }
 
-        private static List<Node> GeneratePath(Node startNode, Node endNode)
+        private static List<Node> GeneratePath(Node? startNode, Node? endNode)
         {
             var path = new List<Node>();
             var currentNode = endNode;
