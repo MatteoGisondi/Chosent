@@ -7,7 +7,7 @@ namespace Chosent.Logic
 {
 	public class LevelToArray : Node2D
 	{
-		int[,] levelArray = new int[10, 16];
+		int[,] levelArray = new int[10, 10];
 		// Called when the node enters the scene tree for the first time.
 		public override void _Ready()
 		{
