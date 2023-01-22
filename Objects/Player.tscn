@@ -56,4 +56,5 @@ shape = SubResource( 1 )
 [node name="FunnyDood" type="AnimatedSprite" parent="."]
 scale = Vector2( 2, 2 )
 frames = SubResource( 8 )
+frame = 4
 playing = true
