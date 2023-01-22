@@ -21,17 +21,6 @@ public class UIView : Node
 	{
 		_gameState = 0;
 		
-		// TODO! TODO! TODO!
-		_batButton = (TextureButton)GetNode("BatButtonName");
-		_batBlueButton = (TextureButton)GetNode("BatButtonName");
-		_batGreenButton = (TextureButton)GetNode("BatButtonName");
-		_batRedButton = (TextureButton)GetNode("BatButtonName");
-		//
-		
-		//_batButton.Connect("pressed", this, nameof(PlaceBat));
-		//_batBlueButton.Connect("pressed", this, nameof(PlaceBatBlue));
-		//_batGreenButton.Connect("pressed", this, nameof(PlaceBatGreen));
-		//_batRedButton.Connect("pressed", this, nameof(PlaceBatRed));
 	}
 	
 	private void PlaceBat()

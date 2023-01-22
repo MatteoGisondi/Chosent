@@ -66,5 +66,129 @@ namespace Chosent.Logic
 		{
 			return this.isRendered;
 		}
+
+		// Press 1 on the keyboard to spawn a yellow bat at mouse position
+		public override void _Input(InputEvent @event)
+		{
+			// if key1 on the keyboard is pressed spawn a yellow bat at mouse position
+
+			if (Input.IsActionPressed("key1"))
+			{
+				// Get the mouse position
+				var mousePosition = GetViewport().GetMousePosition();
+
+				GD.Print($"{mousePosition.x}, {mousePosition.y}");
+
+				// Convert the mouse position to a tile position and snap to center of nearest tile
+				var tilePosition = new Vector2((mousePosition.x - 200)/0.8f, (mousePosition.y - 25)/0.8f);
+
+				// Make tilePosition snap to a grid. Adjust for it being slightly off center
+				tilePosition.x = (float)Math.Round(tilePosition.x/64.0 - 0.5)*64.0f + 32.0f;
+				tilePosition.y = (float)Math.Round(tilePosition.y/64.0 - 0.5)*64.0f + 32.0f;
+				
+
+				// Add a hazard as a child of this node and set the position to the tile position
+				var hazard = (Hazard)ResourceLoader.Load<PackedScene>("res://Objects/Hazard.tscn").Instance();
+				hazard.Position = tilePosition;
+				this.AddChild(hazard);
+
+				// change the hazard sprite to yellow bat
+				var sprite = (AnimatedSprite)(hazard.GetNode("Sprite"));
+				sprite.Frames = (SpriteFrames)ResourceLoader.Load("res://assets/Bat.tres", "SpriteFrames");
+				hazard.ResetStats();
+				
+			}
+
+			// if key2 on the keyboard is pressed spawn a red bat at mouse position
+
+			if (Input.IsActionPressed("key2"))
+			{
+				// Get the mouse position
+				var mousePosition = GetViewport().GetMousePosition();
+
+				GD.Print($"{mousePosition.x}, {mousePosition.y}");
+
+				// Convert the mouse position to a tile position and snap to center of nearest tile
+				var tilePosition = new Vector2((mousePosition.x - 200)/0.8f, (mousePosition.y - 25)/0.8f);
+
+				// Make tilePosition snap to a grid. Adjust for it being slightly off center
+				tilePosition.x = (float)Math.Round(tilePosition.x/64.0 - 0.5)*64.0f + 32.0f;
+				tilePosition.y = (float)Math.Round(tilePosition.y/64.0 - 0.5)*64.0f + 32.0f;
+				
+
+				// Add a hazard as a child of this node and set the position to the tile position
+				var hazard = (Hazard)ResourceLoader.Load<PackedScene>("res://Objects/Hazard.tscn").Instance();
+				hazard.Position = tilePosition;
+				this.AddChild(hazard);
+
+				// change the hazard sprite to red bat
+				var sprite = (AnimatedSprite)(hazard.GetNode("Sprite"));
+				sprite.Frames = (SpriteFrames)ResourceLoader.Load("res://assets/BatBlue.tres", "SpriteFrames");
+				hazard.ResetStats();
+				
+			}
+
+			// if key3 on the keyboard is pressed spawn a blue bat at mouse position
+
+			if (Input.IsActionPressed("key3"))
+			{
+				// Get the mouse position
+				var mousePosition = GetViewport().GetMousePosition();
+
+				GD.Print($"{mousePosition.x}, {mousePosition.y}");
+
+				// Convert the mouse position to a tile position and snap to center of nearest tile
+				var tilePosition = new Vector2((mousePosition.x - 200)/0.8f, (mousePosition.y - 25)/0.8f);
+
+				// Make tilePosition snap to a grid. Adjust for it being slightly off center
+				tilePosition.x = (float)Math.Round(tilePosition.x/64.0 - 0.5)*64.0f + 32.0f;
+				tilePosition.y = (float)Math.Round(tilePosition.y/64.0 - 0.5)*64.0f + 32.0f;
+				
+
+				// Add a hazard as a child of this node and set the position to the tile position
+				var hazard = (Hazard)ResourceLoader.Load<PackedScene>("res://Objects/Hazard.tscn").Instance();
+				hazard.Position = tilePosition;
+				this.AddChild(hazard);
+
+				// change the hazard sprite to blue bat
+				var sprite = (AnimatedSprite)(hazard.GetNode("Sprite"));
+				sprite.Frames = (SpriteFrames)ResourceLoader.Load("res://assets/BatGreen.tres", "SpriteFrames");
+				hazard.ResetStats();
+				
+			}
+
+			// if key4 on the keyboard is pressed spawn a green bat at mouse position
+
+			if (Input.IsActionPressed("key4"))
+			{
+				// Get the mouse position
+				var mousePosition = GetViewport().GetMousePosition();
+
+				GD.Print($"{mousePosition.x}, {mousePosition.y}");
+
+				// Convert the mouse position to a tile position and snap to center of nearest tile
+				var tilePosition = new Vector2((mousePosition.x - 200)/0.8f, (mousePosition.y - 25)/0.8f);
+
+				// Make tilePosition snap to a grid. Adjust for it being slightly off center
+				tilePosition.x = (float)Math.Round(tilePosition.x/64.0 - 0.5)*64.0f + 32.0f;
+				tilePosition.y = (float)Math.Round(tilePosition.y/64.0 - 0.5)*64.0f + 32.0f;
+				
+
+				// Add a hazard as a child of this node and set the position to the tile position
+				var hazard = (Hazard)ResourceLoader.Load<PackedScene>("res://Objects/Hazard.tscn").Instance();
+				hazard.Position = tilePosition;
+				this.AddChild(hazard);
+
+				// change the hazard sprite to green bat
+				var sprite = (AnimatedSprite)(hazard.GetNode("Sprite"));
+				sprite.Frames = (SpriteFrames)ResourceLoader.Load("res://assets/BatRed.tres", "SpriteFrames");
+				hazard.ResetStats();
+				
+			}
+		}
+
+		
+
+
 	}
 }
