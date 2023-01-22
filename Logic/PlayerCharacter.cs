@@ -2,11 +2,7 @@ using Godot;
 using System;
 
 public class PlayerCharacter : Node
-{
-	// Declare member variables here. Examples:
-	// private int a = 2;
-	// private string b = "text";
-	
+{	
 	private int _hp;
 	private int _str;
 	private int _dex;
@@ -36,10 +32,29 @@ public class PlayerCharacter : Node
 		GD.Print("Dex: " + _dex.ToString());
 		GD.Print("Int: " + _int.ToString());
 	}
-
-//  // Called every frame. 'delta' is the elapsed time since the previous frame.
-//  public override void _Process(float delta)
-//  {
-//      
-//  }
+	
+	public int GetHP()
+	{
+		return _hp;
+	}
+	
+	public int GetStr()
+	{
+		return _str;
+	}
+	
+	public int GetDex()
+	{
+		return _dex;
+	}
+	
+	public int GetInt()
+	{
+		return _int;
+	}
+	
+	public (int, int, int, int) GetStats()
+	{
+		return (GetHP(), GetStr(), GetDex(), GetInt());
+	}
 }
