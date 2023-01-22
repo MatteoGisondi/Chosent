@@ -1,0 +1,186 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Logic/CharacterCreation.cs" type="Script" id=1]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Control" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 1 )
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control"]
+margin_left = 196.0
+margin_top = 86.0
+margin_right = 779.0
+margin_bottom = 147.0
+rect_pivot_offset = Vector2( -341, -195 )
+text = "Allot your stats!"
+
+[node name="PointsRemaining" type="RichTextLabel" parent="Control"]
+margin_left = 196.0
+margin_top = 120.0
+margin_right = 779.0
+margin_bottom = 181.0
+rect_pivot_offset = Vector2( -341, -195 )
+text = "You have X points remaining!"
+
+[node name="StatBlock" type="HBoxContainer" parent="Control"]
+margin_left = 276.0
+margin_top = 246.0
+margin_right = 537.0
+margin_bottom = 338.0
+
+[node name="StatNames" type="VBoxContainer" parent="Control/StatBlock"]
+margin_right = 62.0
+margin_bottom = 92.0
+size_flags_horizontal = 3
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control/StatBlock/StatNames"]
+margin_right = 62.0
+margin_bottom = 20.0
+rect_pivot_offset = Vector2( -32, -55 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Aliven't"
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="Control/StatBlock/StatNames"]
+margin_top = 24.0
+margin_right = 62.0
+margin_bottom = 44.0
+rect_pivot_offset = Vector2( -32, -55 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Stronkn't"
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="Control/StatBlock/StatNames"]
+margin_top = 48.0
+margin_right = 62.0
+margin_bottom = 68.0
+rect_pivot_offset = Vector2( -32, -55 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Dexn't"
+
+[node name="RichTextLabel4" type="RichTextLabel" parent="Control/StatBlock/StatNames"]
+margin_top = 72.0
+margin_right = 62.0
+margin_bottom = 92.0
+rect_pivot_offset = Vector2( -32, -55 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Intn't"
+
+[node name="StatDowns" type="VBoxContainer" parent="Control/StatBlock"]
+margin_left = 66.0
+margin_right = 128.0
+margin_bottom = 92.0
+size_flags_horizontal = 3
+
+[node name="HPButtonDown" type="Button" parent="Control/StatBlock/StatDowns"]
+margin_right = 62.0
+margin_bottom = 20.0
+rect_pivot_offset = Vector2( -1060, -101 )
+text = "Down"
+
+[node name="StrButtonDown" type="Button" parent="Control/StatBlock/StatDowns"]
+margin_top = 24.0
+margin_right = 62.0
+margin_bottom = 44.0
+rect_pivot_offset = Vector2( -1060, -101 )
+text = "Down"
+
+[node name="DexButtonDown" type="Button" parent="Control/StatBlock/StatDowns"]
+margin_top = 48.0
+margin_right = 62.0
+margin_bottom = 68.0
+rect_pivot_offset = Vector2( -1060, -101 )
+text = "Down"
+
+[node name="IntButtonDown" type="Button" parent="Control/StatBlock/StatDowns"]
+margin_top = 72.0
+margin_right = 62.0
+margin_bottom = 92.0
+rect_pivot_offset = Vector2( -1060, -101 )
+text = "Down"
+
+[node name="StatValues" type="VBoxContainer" parent="Control/StatBlock"]
+margin_left = 132.0
+margin_right = 194.0
+margin_bottom = 92.0
+size_flags_horizontal = 3
+
+[node name="HPValue" type="RichTextLabel" parent="Control/StatBlock/StatValues"]
+margin_right = 62.0
+margin_bottom = 20.0
+rect_pivot_offset = Vector2( -32, -55 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "0"
+
+[node name="StrValue" type="RichTextLabel" parent="Control/StatBlock/StatValues"]
+margin_top = 24.0
+margin_right = 62.0
+margin_bottom = 44.0
+rect_pivot_offset = Vector2( -32, -55 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "0"
+
+[node name="DexValue" type="RichTextLabel" parent="Control/StatBlock/StatValues"]
+margin_top = 48.0
+margin_right = 62.0
+margin_bottom = 68.0
+rect_pivot_offset = Vector2( -32, -55 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "0"
+
+[node name="IntValue" type="RichTextLabel" parent="Control/StatBlock/StatValues"]
+margin_top = 72.0
+margin_right = 62.0
+margin_bottom = 92.0
+rect_pivot_offset = Vector2( -32, -55 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "0"
+
+[node name="StatUps" type="VBoxContainer" parent="Control/StatBlock"]
+margin_left = 198.0
+margin_right = 261.0
+margin_bottom = 92.0
+size_flags_horizontal = 3
+
+[node name="HPButtonUp" type="Button" parent="Control/StatBlock/StatUps"]
+margin_right = 63.0
+margin_bottom = 20.0
+rect_pivot_offset = Vector2( -1060, -101 )
+text = "Up"
+
+[node name="StrButtonUp" type="Button" parent="Control/StatBlock/StatUps"]
+margin_top = 24.0
+margin_right = 63.0
+margin_bottom = 44.0
+rect_pivot_offset = Vector2( -1060, -101 )
+text = "Up"
+
+[node name="DexButtonUp" type="Button" parent="Control/StatBlock/StatUps"]
+margin_top = 48.0
+margin_right = 63.0
+margin_bottom = 68.0
+rect_pivot_offset = Vector2( -1060, -101 )
+text = "Up"
+
+[node name="IntButtonUp" type="Button" parent="Control/StatBlock/StatUps"]
+margin_top = 72.0
+margin_right = 63.0
+margin_bottom = 92.0
+rect_pivot_offset = Vector2( -1060, -101 )
+text = "Up"
+
+[node name="ContinueButton" type="Button" parent="Control"]
+margin_left = 679.0
+margin_top = 364.0
+margin_right = 834.0
+margin_bottom = 431.0
+text = "Continue"
