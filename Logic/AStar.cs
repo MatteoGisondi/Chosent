@@ -1,206 +1,189 @@
+using System;
 using System.Diagnostics;
+using System.Collections.Generic;
 
 namespace Chosent.Logic
 {
+	class AStar
+	{
+		private readonly int[,] _map;
 
-    class AStar
-    {
-        internal class Node
-        {
-            public int X { get; set; }
-            public int Y { get; set; }
-            public int G { get; set; }
-            public int H { get; set; }
-            public int F { get; set; }
-            public Node? Parent { get; set; }
+		private int[,] _heuristicCost;
 
-            public Node(int x, int y, Node? parent)
-            {
-                X = x;
-                Y = y;
-                Parent = parent;
-            }
+		private int[,] _movementCost;
 
-            public override string ToString()
-            {
-                return string.Format($"({X}, {Y}) [G={G}, H={H}, F={F}]");
-            }
-        }
+		private readonly PriorityQueue _openList;
+		// ReSharper disable once CollectionNeverQueried.Local
+		private readonly HashSet<Node> _openSet;
 
-        private readonly int[,] _map;
+		private readonly HashSet<(int, int)> _closedList;
 
-        private int[,] _heuristicCost;
+		private readonly Stack<Node> _nodePool;
 
-        private int[,] _movementCost;
+		public AStar(int[,] map)
+		{
+			_map = map;
+			_openList = new PriorityQueue();
+			_openSet = new HashSet<Node>();
+			_closedList = new HashSet<(int, int)>();
+			_nodePool = new Stack<Node>();
+			_heuristicCost = new int[map.GetLength(0), map.GetLength(1)];
+			_movementCost = new int[map.GetLength(0), map.GetLength(1)];
+		}
 
-        private readonly PriorityQueue<Node, int> _openList;
-        // ReSharper disable once CollectionNeverQueried.Local
-        private readonly HashSet<Node> _openSet;
+		public List<Node> FindPath((int Y, int X) start, (int Y, int X) end)
+		{
+			PrecomputeCost(end);
+			var startNode = GetNodeFromPool(start.X, start.Y);
+			var endNode = GetNodeFromPool(end.X, end.Y);
+			if (startNode == null) throw new Exception("IndexOutofRange");
+			startNode.G = 0;
+			startNode.H = _heuristicCost[startNode.X, startNode.Y];
+			startNode.F = startNode.G + startNode.H;
 
-        private readonly HashSet<(int, int)> _closedList;
+			_openList.Enqueue(startNode);
+			_openSet.Add(startNode);
 
-        private readonly Stack<Node?> _nodePool;
+			while (_openList.Count > 0)
+			{
+				// Get the node with the lowest F score
+				var currentNode = _openList.Dequeue() ?? throw new Exception("InvalidOperation");
+				Debug.WriteLine($"Current node: {currentNode}");
 
-        public AStar(int[,] map)
-        {
-            _map = map;
-            _openList = new PriorityQueue<Node, int>();
-            _openSet = new HashSet<Node>();
-            _closedList = new HashSet<(int, int)>();
-            _nodePool = new Stack<Node?>();
-            _heuristicCost = new int[map.GetLength(0), map.GetLength(1)];
-            _movementCost = new int[map.GetLength(0), map.GetLength(1)];
-        }
+				if (IsEndNode(currentNode, endNode))
+				{
+					var path = GeneratePath(startNode, currentNode);
+					Debug.WriteLine("Path found");
+					return path;
+				}
 
-        public List<Node>? FindPath((int Y, int X) start, (int Y, int X) end)
-        {
-            PrecomputeCost(end);
-            var startNode = GetNodeFromPool(start.X, start.Y);
-            var endNode = GetNodeFromPool(end.X, end.Y);
-            if (startNode == null) throw new IndexOutOfRangeException();
-            startNode.G = 0;
-            startNode.H = _heuristicCost[startNode.X, startNode.Y];
-            startNode.F = startNode.G + startNode.H;
+				if (IsBlocked(currentNode))
+				{
+					Debug.WriteLine("Current node is blocked");
+					return null;
+				}
 
-            _openList.Enqueue(startNode, startNode.F);
-            _openSet.Add(startNode);
+				if (_closedList.Contains((currentNode.X, currentNode.Y)))
+				{
+					Debug.WriteLine("Current node is already in the closed list");
+					continue;
+				}
 
-            while (_openList.Count > 0)
-            {
-                // Get the node with the lowest F score
-                var currentNode = _openList.Dequeue() ?? throw new InvalidOperationException();
-                Debug.WriteLine($"Current node: {currentNode}");
+				_closedList.Add((currentNode.X, currentNode.Y));
+				var neighbors = GenerateNeighbors(currentNode);
 
-                if (IsEndNode(currentNode, endNode))
-                {
-                    var path = GeneratePath(startNode, currentNode);
-                    Debug.WriteLine("Path found");
-                    return path;
-                }
+				foreach (var neighbor in neighbors)
+				{
+					if (IsVisited(neighbor)) continue;
+					var gScore = currentNode.G + _movementCost[neighbor.X, neighbor.Y];
+					neighbor.G = gScore;
+					neighbor.H = _heuristicCost[neighbor.X, neighbor.Y];
+					neighbor.F = neighbor.G + neighbor.H;
+					neighbor.Parent = currentNode;
+					_openList.Enqueue(neighbor);
+					_openSet.Add(neighbor);
+				}
+			}
 
-                if (IsBlocked(currentNode))
-                {
-                    Debug.WriteLine("Current node is blocked");
-                    return null;
-                }
+			Debug.WriteLine("No path found");
+			return null;
+		}
 
-                if (_closedList.Contains((currentNode.X, currentNode.Y)))
-                {
-                    Debug.WriteLine("Current node is already in the closed list");
-                    continue;
-                }
+		private static bool IsEndNode(Node currentNode, Node endNode)
+		{
+			return currentNode.X == endNode.X && currentNode.Y == endNode.Y;
+		}
 
-                _closedList.Add((currentNode.X, currentNode.Y));
-                var neighbors = GenerateNeighbors(currentNode);
+		private bool IsBlocked(Node currentNode)
+		{
+			return _map[currentNode.X, currentNode.Y] == 1;
+		}
 
-                foreach (var neighbor in neighbors)
-                {
-                    if (IsVisited(neighbor)) continue;
-                    var gScore = currentNode.G + _movementCost[neighbor.X, neighbor.Y];
-                    neighbor.G = gScore;
-                    neighbor.H = _heuristicCost[neighbor.X, neighbor.Y];
-                    neighbor.F = neighbor.G + neighbor.H;
-                    neighbor.Parent = currentNode;
-                    _openList.Enqueue(neighbor, neighbor.F);
-                    _openSet.Add(neighbor);
-                }
-            }
+		private List<Node> GenerateNeighbors(Node currentNode)
+		{
+			var neighbors = new List<Node>();
+			for (var i = -1; i <= 1; i++)
+			{
+				for (var j = -1; j <= 1; j++)
+				{
+					if (i == 0 && j == 0) continue; // current
+					if (i + j == 0 || i + j == 2 || i + j == -2) continue; // diagonal
+					if (!IsValidCoordinate(currentNode.X + i, currentNode.Y + j)) continue; // illegal
+					var neighbor = GetNodeFromPool(currentNode.X + i, currentNode.Y + j);
+					if (IsVisited(neighbor)) continue; // visited
+					neighbors.Add(neighbor);
+				}
+			}
 
-            Debug.WriteLine("No path found");
-            return null;
-        }
+			return neighbors;
+		}
 
-        private static bool IsEndNode(Node currentNode, Node endNode)
-        {
-            return currentNode.X == endNode.X && currentNode.Y == endNode.Y;
-        }
+		private bool IsVisited(Node neighbor)
+		{
+			return _closedList.Contains((neighbor.X, neighbor.Y));
+		}
 
-        private bool IsBlocked(Node currentNode)
-        {
-            return _map[currentNode.X, currentNode.Y] == 1;
-        }
+		private bool IsValidCoordinate(int x, int y)
+		{
+			// Check if the coordinate is outside the map bounds
+			if (x < 0 || x >= _map.GetLength(0) || y < 0 || y >= _map.GetLength(1))
+			{
+				return false;
+			}
 
-        private List<Node> GenerateNeighbors(Node currentNode)
-        {
-            var neighbors = new List<Node>();
-            for (var i = -1; i <= 1; i++)
-            {
-                for (var j = -1; j <= 1; j++)
-                {
-                    if (i == 0 && j == 0) continue; // current
-                    if (i + j == 0 || Math.Abs(i + j) == 2) continue; // diagonal
-                    if (!IsValidCoordinate(currentNode.X + i, currentNode.Y + j)) continue; // illegal
-                    var neighbor = GetNodeFromPool(currentNode.X + i, currentNode.Y + j);
-                    if (IsVisited(neighbor)) continue; // visited
-                    neighbors.Add(neighbor);
-                }
-            }
+			// Check if the coordinate is blocked
+			return _map[x, y] != 1;
+		}
 
-            return neighbors;
-        }
+		private void PrecomputeCost((int X, int Y) end)
+		{
+			for (var i = 0; i < _map.GetLength(0); i++)
+			{
+				for (var j = 0; j < _map.GetLength(1); j++)
+				{
+					// Compute the Manhattan distance between the current coordinate and the end
+					int h1 = i - end.X;
+					int h2 = j - end.Y;
+					if (h1 > 0) h1 = 0 - h1;
+					if (h2 > 0) h2 = 0 - h2;
+					_heuristicCost[i, j] = h1 + h2;
+					// Set the movement cost to 1 for all coordinates
+					_movementCost[i, j] = 1;
+				}
+			}
+		}
 
-        private bool IsVisited(Node neighbor)
-        {
-            return _closedList.Contains((neighbor.X, neighbor.Y));
-        }
+		private Node GetNodeFromPool(int x, int y)
+		{
+			if (_nodePool.Count == 0)
+			{
+				return new Node(x, y, null);
+			}
 
-        private bool IsValidCoordinate(int x, int y)
-        {
-            // Check if the coordinate is outside the map bounds
-            if (x < 0 || x >= _map.GetLength(0) || y < 0 || y >= _map.GetLength(1))
-            {
-                return false;
-            }
+			var node = _nodePool.Pop();
+			if (node == null) return null;
+			{
+				node.X = x;
+				node.Y = y;
+				node.Parent = null;
+				return node;
+			}
+		}
 
-            // Check if the coordinate is blocked
-            return _map[x, y] != 1;
-        }
+		private static List<Node> GeneratePath(Node startNode, Node endNode)
+		{
+			var path = new List<Node>();
+			var currentNode = endNode;
+			while (currentNode != startNode)
+			{
+				if (currentNode == null) continue;
+				path.Add(currentNode);
+				// Console.WriteLine($"Path Node:{currentNode.ToString()}");
+				currentNode = currentNode.Parent;
+			}
 
-        private void PrecomputeCost((int X, int Y) end)
-        {
-            for (var i = 0; i < _map.GetLength(0); i++)
-            {
-                for (var j = 0; j < _map.GetLength(1); j++)
-                {
-                    // Compute the Manhattan distance between the current coordinate and the end
-                    _heuristicCost[i, j] = Math.Abs(i - end.X) + Math.Abs(j - end.Y);
-                    // Set the movement cost to 1 for all coordinates
-                    _movementCost[i, j] = 1;
-                }
-            }
-        }
-
-        private Node? GetNodeFromPool(int x, int y)
-        {
-            if (_nodePool.Count == 0)
-            {
-                return new Node(x, y, null);
-            }
-
-            var node = _nodePool.Pop();
-            if (node == null) return null;
-            {
-                node.X = x;
-                node.Y = y;
-                node.Parent = null;
-                return node;
-            }
-        }
-
-        private static List<Node> GeneratePath(Node? startNode, Node? endNode)
-        {
-            var path = new List<Node>();
-            var currentNode = endNode;
-            while (currentNode != startNode)
-            {
-                if (currentNode == null) continue;
-                path.Add(currentNode);
-                Console.WriteLine($"Path Node:{currentNode}");
-                currentNode = currentNode.Parent;
-            }
-
-            path.Reverse();
-            return path;
-        }
-    }
+			path.Reverse();
+			return path;
+		}
+	}
 }
