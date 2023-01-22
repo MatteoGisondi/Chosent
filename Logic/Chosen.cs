@@ -4,7 +4,7 @@ using System;
 namespace Chosent.Logic
 {
 
-	public class Player : KinematicBody2D
+	public class Chosen : KinematicBody2D
 	{
 		// Declare member variables here. Examples:
 		// private int a = 2;
