@@ -51,5 +51,5 @@ position = Vector2( 32, 32 )
 [node name="FunnyDood" type="AnimatedSprite" parent="Player"]
 scale = Vector2( 2, 2 )
 frames = SubResource( 7 )
-frame = 2
+frame = 1
 playing = true
