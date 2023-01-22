@@ -48,24 +48,24 @@ namespace Chosent.Logic
 			{
 				// Get the node with the lowest F score
 				var currentNode = _openList.Dequeue() ?? throw new Exception("InvalidOperation");
-				Debug.WriteLine($"Current node: {currentNode}");
+				// Debug.WriteLine($"Current node: {currentNode}");
 
 				if (IsEndNode(currentNode, endNode))
 				{
 					var path = GeneratePath(startNode, currentNode);
-					Debug.WriteLine("Path found");
+					// Debug.WriteLine("Path found");
 					return path;
 				}
 
 				if (IsBlocked(currentNode))
 				{
-					Debug.WriteLine("Current node is blocked");
+					// Debug.WriteLine("Current node is blocked");
 					return null;
 				}
 
 				if (_closedList.Contains((currentNode.X, currentNode.Y)))
 				{
-					Debug.WriteLine("Current node is already in the closed list");
+					// Debug.WriteLine("Current node is already in the closed list");
 					continue;
 				}
 
@@ -176,7 +176,6 @@ namespace Chosent.Logic
 			var currentNode = endNode;
 			while (currentNode != startNode)
 			{
-				if (currentNode == null) continue;
 				path.Add(currentNode);
 				// Console.WriteLine($"Path Node:{currentNode.ToString()}");
 				currentNode = currentNode.Parent;
@@ -184,6 +183,16 @@ namespace Chosent.Logic
 
 			path.Reverse();
 			return path;
+		}
+		
+		public static List<(int,int)> GetMovements(List<Node> path)
+		{
+			var movements = new List<(int,int)>();
+			foreach (var node in path)
+			{
+				movements.Add((node.Parent.X - node.X, node.Parent.Y - node.Y));
+			}
+			return movements;
 		}
 	}
 }

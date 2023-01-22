@@ -7,8 +7,11 @@ namespace Chosent.Logic
 {
 	public class LevelToArray : Node2D
 	{
-		int[,] levelArray = new int[10, 10];
+		public int[,] levelArray = new int[8, 8];
 		// Called when the node enters the scene tree for the first time.
+		
+		private bool isRendered = false;
+		
 		public override void _Ready()
 		{
 			// Convert the level into an array
@@ -26,7 +29,6 @@ namespace Chosent.Logic
 			// Get the level's children
 			var levelChildren = level.GetChildren();
 			GD.Print(levelChildren);
-			
 
 			// Loop through the level's children and add them to the array
 
@@ -56,8 +58,13 @@ namespace Chosent.Logic
 				}
 				GD.Print(line);
 			}
-
-
+		
+			this.isRendered = true;
+		}
+		
+		public bool IsRendered()
+		{
+			return this.isRendered;
 		}
 
 		//  // Called every frame. 'delta' is the elapsed time since the previous frame.
