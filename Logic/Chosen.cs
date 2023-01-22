@@ -89,7 +89,7 @@ namespace Chosent.Logic
 				// 	randomX = x;
 				// 	randomY = y;
 				// }
-				
+
 			// }
 			this.start = (0, 0);
 			_lastInput = DateTime.MinValue; // Set it to the minimum value so we can move immediately
@@ -142,6 +142,12 @@ namespace Chosent.Logic
 				if (this.GetLevel().IsRendered() && isAtEnd)
 				{
 					// GetTree().Quit();
+					// globals.health -= ((int)(_hp/globals._hp));
+					// ((UIView)(GetTree().Root.GetChildren()[0])).UpdateHP();
+					// if (globals.health <= 0)
+					// {
+						GetTree().Quit();
+					// }
 				}
 			}
 		}
