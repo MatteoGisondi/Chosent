@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Chosent.Logic
 {
-    class PriorityQueue<Node> where Node : IComparable<Node>
+    class PriorityQueue
     {
         private readonly List<Node> _nodes = new List<Node>();
 

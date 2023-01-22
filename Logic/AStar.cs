@@ -3,43 +3,15 @@ using System.Collections.Generic;
 
 namespace Chosent.Logic
 {
-
     class AStar
     {
-        internal class Node : IComparable<Node>
-        {
-            public int X { get; set; }
-            public int Y { get; set; }
-            public int G { get; set; }
-            public int H { get; set; }
-            public int F { get; set; }
-            public Node? Parent { get; set; }
-
-            public Node(int x, int y, Node? parent)
-            {
-                X = x;
-                Y = y;
-                Parent = parent;
-            }
-
-            public override string ToString()
-            {
-                return string.Format($"({X}, {Y}) [G={G}, H={H}, F={F}]");
-            }
-
-            public int CompareTo(Node? other)
-            {
-                return F.CompareTo(other.F);
-            }
-        }
-
         private readonly int[,] _map;
 
         private int[,] _heuristicCost;
 
         private int[,] _movementCost;
 
-        private readonly ConsoleApp1.Logic.PriorityQueue<Node> _openList;
+        private readonly PriorityQueue _openList;
         // ReSharper disable once CollectionNeverQueried.Local
         private readonly HashSet<Node> _openSet;
 
@@ -50,7 +22,7 @@ namespace Chosent.Logic
         public AStar(int[,] map)
         {
             _map = map;
-            _openList = new PriorityQueue<Node>();
+            _openList = new PriorityQueue();
             _openSet = new HashSet<Node>();
             _closedList = new HashSet<(int, int)>();
             _nodePool = new Stack<Node?>();
@@ -201,7 +173,7 @@ namespace Chosent.Logic
             {
                 if (currentNode == null) continue;
                 path.Add(currentNode);
-                Console.WriteLine($"Path Node:{currentNode}");
+                Console.WriteLine($"Path Node:{currentNode.ToString()}");
                 currentNode = currentNode.Parent;
             }
 
