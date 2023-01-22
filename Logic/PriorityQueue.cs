@@ -1,6 +1,6 @@
-using System.Collections.Generic;
+using System.Runtime;
 
-namespace ConsoleApp1.Logic
+namespace Chosent.Logic
 {
     class PriorityQueue<Node> where Node : IComparable<Node>
     {
