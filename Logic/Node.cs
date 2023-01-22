@@ -1,7 +1,5 @@
-namespace ConsoleApp1.Logic
+namespace Chosent.Logic
 {
-
-
     internal class Node
     {
         public int X { get; set; }
