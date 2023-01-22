@@ -1,3 +1,5 @@
+![banner](assets/Title.PNG)
+
 # Chosen't
 A game where you're the one who *wasn't* Chosen.
 
