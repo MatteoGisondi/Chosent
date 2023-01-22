@@ -71,7 +71,7 @@ namespace Chosent.Logic
                 var currentNode = _openList.Dequeue() ?? throw new InvalidOperationException();
                 Debug.WriteLine($"Current node: {currentNode}");
 
-                if (IsEndNode(currentNode, endNode!))
+                if (IsEndNode(currentNode, endNode))
                 {
                     var path = GeneratePath(startNode, currentNode);
                     Debug.WriteLine("Path found");
@@ -131,8 +131,8 @@ namespace Chosent.Logic
                     if (i + j == 0 || Math.Abs(i + j) == 2) continue; // diagonal
                     if (!IsValidCoordinate(currentNode.X + i, currentNode.Y + j)) continue; // illegal
                     var neighbor = GetNodeFromPool(currentNode.X + i, currentNode.Y + j);
-                    if (IsVisited(neighbor!)) continue; // visited
-                    neighbors.Add(neighbor!);
+                    if (IsVisited(neighbor)) continue; // visited
+                    neighbors.Add(neighbor);
                 }
             }
 
