@@ -60,16 +60,8 @@ namespace Chosent.Logic
 
 			if (this.GetLevel().IsRendered() && isPathGenerated && isAtEnd)
 			{
-				var globals = (GlobalVariables)GetNode<GlobalVariables>("/root/GlobalVariables");
-				var nextLevel = ++globals.level;
-				if (nextLevel < 4)
-				{
-					GetTree().ChangeScene($"res://Levels/Level{nextLevel}.tscn");
-				}
-				else
-				{
-					GetTree().Quit();
-				}
+				// TODO : win state
+				GetTree().Quit();
 			}
 
 		}
