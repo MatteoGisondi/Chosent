@@ -9,4 +9,6 @@ public class GlobalVariables : Node
 	public int _int = 0;
 	
 	public SpriteFrames _nextHazardPlacement;
+	
+	public int level = 1;
 }

@@ -1,8 +1,13 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Logic/UIView.cs" type="Script" id=1]
 [ext_resource path="res://Levels/Level1.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/TextBox.PNG" type="Texture" id=3]
 [ext_resource path="res://assets/Gradient.png" type="Texture" id=4]
+[ext_resource path="res://assets/BatBlue.tres" type="SpriteFrames" id=5]
+[ext_resource path="res://assets/BatGreen.tres" type="SpriteFrames" id=6]
+[ext_resource path="res://assets/Bat.tres" type="SpriteFrames" id=7]
+[ext_resource path="res://assets/BatRed.tres" type="SpriteFrames" id=8]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 1 )
@@ -30,3 +35,95 @@ position = Vector2( 401, 545 )
 rotation = -1.5708
 scale = Vector2( 6.92997, 25.0979 )
 texture = ExtResource( 4 )
+
+[node name="TextBox" type="Sprite" parent="."]
+position = Vector2( 400, 515 )
+scale = Vector2( 1.275, 0.412 )
+texture = ExtResource( 3 )
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+margin_left = 62.0
+margin_top = 491.0
+margin_right = 375.0
+margin_bottom = 589.0
+text = "Defend the Chosen't! Use the number keys to place Hazards on tiles to keep the Chosen Ones from getting to you!"
+
+[node name="BatSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 470, 480 )
+frames = ExtResource( 7 )
+
+[node name="BatBlueSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 550, 480 )
+frames = ExtResource( 5 )
+
+[node name="BatGreenSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 630, 480 )
+frames = ExtResource( 6 )
+
+[node name="BatRedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 710, 480 )
+frames = ExtResource( 8 )
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="."]
+margin_left = 450.0
+margin_top = 490.0
+margin_right = 530.0
+margin_bottom = 600.0
+text = "--[1]--
+Aliven't: 1
+Stronkn't: 1
+Dexn't: 3
+Intn't: 1"
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="."]
+margin_left = 530.0
+margin_top = 490.0
+margin_right = 610.0
+margin_bottom = 999.0
+text = "--[2]--
+Aliven't: 1
+Stronkn't: 1
+Dexn't: 1
+Intn't: 3"
+
+[node name="RichTextLabel4" type="RichTextLabel" parent="."]
+margin_left = 610.0
+margin_top = 490.0
+margin_right = 690.0
+margin_bottom = 999.0
+text = "--[3]--
+Aliven't: 3
+Stronkn't: 1
+Dexn't: 1
+Intn't: 1"
+
+[node name="RichTextLabel5" type="RichTextLabel" parent="."]
+margin_left = 690.0
+margin_top = 490.0
+margin_right = 780.0
+margin_bottom = 999.0
+text = "--[4]--
+Aliven't: 1
+Stronkn't: 3
+Dexn't: 1
+Intn't: 1"
+
+[node name="TextBox2" type="Sprite" parent="."]
+position = Vector2( 101.789, 229.354 )
+rotation = 1.5708
+scale = Vector2( 0.661067, 0.503605 )
+texture = ExtResource( 3 )
+
+[node name="RichTextLabel6" type="RichTextLabel" parent="."]
+margin_left = 43.0
+margin_top = 58.0
+margin_right = 158.0
+margin_bottom = 98.0
+text = "ayyyy lmao"
+
+[node name="Button" type="Button" parent="."]
+margin_left = 46.0
+margin_top = 340.0
+margin_right = 158.0
+margin_bottom = 399.0
+text = "I'm ready!"

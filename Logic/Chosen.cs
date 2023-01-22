@@ -10,13 +10,13 @@ namespace Chosent.Logic
 		private DateTime _lastInput;
 		private float _inputDelay = 0.1f * 8;
 		private int _movementSpeed = 64;
-		
+
 		private (int,int) start = (0,0);
 		private (int,int) end = (7,7);
-		
+
 		private List<(int,int)> movements;
 		private int _moveIndex = 0;
-		
+
 		private bool isPathGenerated = false;
 		private bool isAtEnd = false;
 
@@ -30,17 +30,9 @@ namespace Chosent.Logic
 		{
 			var aStar = new AStar(this.GetLevel().levelArray);
 			var path = aStar.FindPath(this.start, this.end);
-			//foreach (var tile in path)
-			//{
-			//	GD.Print((tile.X, tile.Y));
-			//}
 			this.movements = AStar.GetMovements(path);
-			foreach (var move in this.movements)
-			{
-				GD.Print(move);
-			}
 		}
-		
+
 		private LevelToArray GetLevel()
 		{
 			return (LevelToArray)this.GetParent();
@@ -61,9 +53,25 @@ namespace Chosent.Logic
 			}
 			if (this.GetLevel().IsRendered() && isPathGenerated && CheckInputDelay() && !isAtEnd)
 			{
+				_lastInput = DateTime.Now;
 				this.Move(this.movements[_moveIndex++]);
 				if (_moveIndex == this.movements.Count) isAtEnd = true;
 			}
+
+			if (this.GetLevel().IsRendered() && isPathGenerated && isAtEnd)
+			{
+				var globals = (GlobalVariables)GetNode<GlobalVariables>("/root/GlobalVariables");
+				var nextLevel = ++globals.level;
+				if (nextLevel < 4)
+				{
+					GetTree().ChangeScene($"res://Levels/Level{nextLevel}.tscn");
+				}
+				else
+				{
+					GetTree().Quit();
+				}
+			}
+
 		}
 
 		/// <summary>
@@ -100,37 +108,32 @@ namespace Chosent.Logic
 				_lastInput = DateTime.Now;
 			}
 		}
-		
+
 		public void Move((int,int) move)
 		{
 			// Move up, down, left, right on a grid with input from AStar!
 			// Move up
-			GD.Print(move);
 			if (move == (1, 0))
 			{
 				Position += new Vector2(0, -_movementSpeed);
-				_lastInput = DateTime.Now;
 			}
 
 			// Move down
 			if (move == (-1, 0))
 			{
 				Position += new Vector2(0, _movementSpeed);
-				_lastInput = DateTime.Now;
 			}
 
 			// Move left
 			if (move == (0, 1))
 			{
 				Position += new Vector2(-_movementSpeed, 0);
-				_lastInput = DateTime.Now;
 			}
 
 			// Move right
 			if (move == (0, -1))
 			{
 				Position += new Vector2(_movementSpeed, 0);
-				_lastInput = DateTime.Now;
 			}
 		}
 
