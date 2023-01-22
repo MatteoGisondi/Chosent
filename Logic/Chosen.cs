@@ -7,11 +7,12 @@ namespace Chosent.Logic
 
 	public class Chosen : KinematicBody2D
 	{
+		private RandomNumberGenerator rng = new RandomNumberGenerator();
 		private DateTime _lastInput;
 		private float _inputDelay = 0.1f * 8;
 		private int _movementSpeed = 64;
 
-		private (int,int) start = (0,0);
+		private (int,int) start;
 		private (int,int) end = (7,7);
 
 		private List<(int,int)> movements;
@@ -23,6 +24,18 @@ namespace Chosent.Logic
 		// Called when the node enters the scene tree for the first time.
 		public override void _Ready()
 		{
+			int randomX = -1;
+			int randomY = -1;
+			while (randomX == -1 && randomY == -1)
+			{
+				int x = rng.RandiRange(0, 5);
+				int y = rng.RandiRange(0, 5);
+				if (this.GetLevel().levelArray[x, y] == 0)
+				{
+					randomX = x;
+					randomY = y;
+				}
+			}
 			_lastInput = DateTime.MinValue; // Set it to the minimum value so we can move immediately
 		}
 
@@ -56,10 +69,9 @@ namespace Chosent.Logic
 					if (_moveIndex == this.movements.Count) isAtEnd = true;
 				}
 
-				if (this.GetLevel().IsRendered() && isPathGenerated && isAtEnd)
+				if (this.GetLevel().IsRendered() && isAtEnd)
 				{
-					// TODO : win state
-					GetTree().Quit();
+					// GetTree().Quit();
 				}
 			}
 		}
