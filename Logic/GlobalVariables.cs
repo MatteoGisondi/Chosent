@@ -11,4 +11,6 @@ public class GlobalVariables : Node
 	public SpriteFrames _nextHazardPlacement;
 	
 	public int level = 1;
+	
+	public int gameState = 0;
 }
