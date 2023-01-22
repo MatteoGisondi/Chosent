@@ -28,7 +28,6 @@ namespace Chosent.Logic
 			}
 			// Get the level's children
 			var levelChildren = level.GetChildren();
-			GD.Print(levelChildren);
 
 			// Loop through the level's children and add them to the array
 

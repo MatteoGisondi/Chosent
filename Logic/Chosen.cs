@@ -87,12 +87,8 @@ namespace Chosent.Logic
 		// Called every frame. 'delta' is the elapsed time since the previous frame.
 		public override void _PhysicsProcess(float delta)
 		{
-			// Check if we have waited long enough since the last input, if we have then move
-			// if (CheckInputDelay())
-			// {
-			// 	Movement();
-			// }
-			if (this.GetLevel().IsRendered() && !isPathGenerated)
+			var globals = GetNode<GlobalVariables>("/root/GlobalVariables");
+			if (globals.gameState != 0)
 			{
 				this.GetMovements();
 				isPathGenerated = true;
@@ -111,10 +107,19 @@ namespace Chosent.Logic
 				var nextLevel = ++globals.level;
 				if (nextLevel < 4)
 				{
-					GetTree().ChangeScene($"res://Levels/Level{nextLevel}.tscn");
+					this.GetMovements();
+					isPathGenerated = true;
 				}
-				else
+				if (this.GetLevel().IsRendered() && isPathGenerated && CheckInputDelay() && !isAtEnd)
 				{
+					_lastInput = DateTime.Now;
+					this.Move(this.movements[_moveIndex++]);
+					if (_moveIndex == this.movements.Count) isAtEnd = true;
+				}
+
+				if (this.GetLevel().IsRendered() && isPathGenerated && isAtEnd)
+				{
+					// TODO : win state
 					GetTree().Quit();
 				}
 			}
