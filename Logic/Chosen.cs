@@ -103,7 +103,6 @@ namespace Chosent.Logic
 
 			if (this.GetLevel().IsRendered() && isPathGenerated && isAtEnd)
 			{
-				var globals = (GlobalVariables)GetNode<GlobalVariables>("/root/GlobalVariables");
 				var nextLevel = ++globals.level;
 				if (nextLevel < 4)
 				{
