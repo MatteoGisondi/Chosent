@@ -49,7 +49,7 @@ animations = [ {
 [node name="FunnyDood" type="AnimatedSprite" parent="Player"]
 scale = Vector2( 2, 2 )
 frames = SubResource( 7 )
-frame = 3
+frame = 5
 playing = true
 
 [node name="Block" parent="." instance=ExtResource( 1 )]
