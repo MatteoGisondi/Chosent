@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using System.Collections.Generic;
+using System.Runtime.ExceptionServices;
 
 namespace Chosent.Logic
 {
@@ -141,7 +142,11 @@ namespace Chosent.Logic
                 for (var j = 0; j < _map.GetLength(1); j++)
                 {
                     // Compute the Manhattan distance between the current coordinate and the end
-                    _heuristicCost[i, j] = Math.Abs(i - end.X) + Math.Abs(j - end.Y);
+                    int h1 = i - end.X;
+                    int h2 = j - end.Y;
+                    if (h1 > 0) h1 = 0 - h1;
+                    if (h2 > 0) h2 = 0 - h2;
+                    _heuristicCost[i, j] = h1 + h2;
                     // Set the movement cost to 1 for all coordinates
                     _movementCost[i, j] = 1;
                 }
